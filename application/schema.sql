@@ -5,3 +5,11 @@ CREATE TABLE user (
   username TEXT UNIQUE NOT NULL,
   password TEXT NOT NULL
 );
+
+CREATE TABLE crypto (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id INTEGER NOT NULL,
+  crypto_name TEXT NOT NULL,
+  crypto_symbol TEXT NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES user (id)
+);
