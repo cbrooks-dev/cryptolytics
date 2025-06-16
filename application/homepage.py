@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, jsonify
-import db
+
+from application import db
 
 bp = Blueprint('homepage', __name__, url_prefix='/')
 
