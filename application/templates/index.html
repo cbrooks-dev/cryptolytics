@@ -12,11 +12,11 @@
     <!--navbar-->
     <nav class="navbar border-bottom border-body" data-bs-theme="dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#"> <!--logo and brand-->
+        <a class="navbar-brand" href="#">
           <img src="{{ url_for('static', filename='logo.png') }}" alt="Cryptolytics Logo" width="30" height="24" class="d-inline-block align-text-top">
           Cryptolytics
         </a>
-        <form class="d-flex" role="login/register"> <!--login and register buttons-->
+        <form class="d-flex" role="login/register">
           <button class="btn btn-outline-primary me-2" type="button" onclick="login()">Login</button>
           <button class="btn btn-outline-secondary" type="button" onclick="register()">Register</button>
         </form>
@@ -44,13 +44,14 @@
         <div class="card-body bg">
           <h5 class="card-title">Tracked Coins</h5>
           <ol class="list-group list-group-numbered">
-            <li class="list-group-item d-flex justify-content-between align-items-start">
-              <div class="ms-2 me-auto">
-                <div class="fw-bold">Subheading</div>
-                Content for list item
-              </div>
-              <span class="badge text-bg-primary rounded-pill">14</span>
-            </li>
+            {% for crypto in crypto_list %}
+              <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="ms-2 me-auto">
+                  <div class="fw-bold">{{ crypto.name }}</div>
+                </div>
+                <span class="badge text-bg-primary rounded-pill">{{ crypto.ticker }}</span>
+              </li>
+            {% endfor %}
           </ol>
         </div>
       </div>
