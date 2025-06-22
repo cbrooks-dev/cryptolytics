@@ -1,5 +1,5 @@
 function login() {
-    fetch("login")
+    fetch("/login")
         .then(response => response.json())
         .then(data => {
             alert(data.message)
@@ -11,7 +11,7 @@ function login() {
 
 
 function register() {
-    fetch("register")
+    fetch("/register")
         .then(response => response.json())
         .then(data => {
             alert(data.message)
