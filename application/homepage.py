@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, jsonify, session
+from flask import Blueprint, render_template, request, jsonify, session, redirect, url_for
 
 from application import db
 
@@ -9,24 +9,27 @@ bp = Blueprint('homepage', __name__, url_prefix='/')
 def home():
     user = session.get("user_id")
 
+    if not user:
+        return redirect(url_for("auth.login"))
+
     database = db.get_db()
 
-    if not database:
-        return jsonify({"error": "Database connection failed"})
+    try:
+        cursor = database.execute(
+            "SELECT crypto_name, crypto_symbol FROM crypto WHERE user_id = ?",
+            (user,)
+        )
+        rows = cursor.fetchall()
 
-    cursor = database.execute("SELECT crypto_name, crypto_symbol FROM crypto WHERE user_id = (?)", (user,))
+        crypto_list = [
+            {"crypto_name": row["crypto_name"], "crypto_symbol": row["crypto_symbol"]}
+            for row in rows
+        ]
 
-    rows = cursor.fetchall()
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
-    database.commit()
-    database.close()
-
-    crypto_list = []
-
-    for row in rows:
-        crypto_list.append({row[0]: row[1]})
-
-    return render_template("index.html", crypto_list)
+    return render_template("index.html", crypto_list=crypto_list)
 
 
 @bp.route("/add_crypto", methods=["POST"])
