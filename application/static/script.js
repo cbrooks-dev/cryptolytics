@@ -47,7 +47,7 @@ function search() {
 }
 
 function registerUser() {
-    fetch("register-user")
+    fetch("/register-user")
         .then(response => response.json())
         .then(data => {
             alert(data.message)
@@ -58,7 +58,7 @@ function registerUser() {
 }
 
 function loginUser() {
-    fetch("login-user")
+    fetch("/login-user")
         .then(response => response.json())
         .then(data => {
             alert(data.message)
