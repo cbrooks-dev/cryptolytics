@@ -14,7 +14,7 @@ def home():
     if not database:
         return jsonify({"error": "Database connection failed"})
 
-    cursor = database.execute("SELECT crypto_name, crypto_symbol FROM crypto WHERE user_id == (?)", (user,))
+    cursor = database.execute("SELECT crypto_name, crypto_symbol FROM crypto WHERE user_id = (?)", (user,))
 
     rows = cursor.fetchall()
 
