@@ -11,8 +11,7 @@ def home():
 
     database = db.get_db()
 
-    tables = database.execute("SELECT name FROM sqlite_master WHERE type='table';").fetchall()
-    print(tables)
+    print(database.execute("SELECT name FROM sqlite_master WHERE type='table';").fetchall())
 
     if not database:
         return jsonify({"error": "Database connection failed"})
