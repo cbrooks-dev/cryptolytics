@@ -4,9 +4,9 @@
 
 function login() {
     fetch("/auth/login")
-        .then(response => response.json())
-        .then(data => {
-            alert(data.message)
+        .then(response => response.text())
+        .then(html => {
+            document.body.innerHTML = html;
         })
         .catch(error => {
             console.error("Error: ", error)
