@@ -24,7 +24,7 @@ function search() {
 async function registerUser(event) {
     event.preventDefault();
 
-    const username = document.getElementById('username').value;
+    const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
     const response = await fetch('/auth/register', {
@@ -32,7 +32,7 @@ async function registerUser(event) {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`
+        body: `email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`
     });
 
     if (response.redirected) {
@@ -45,7 +45,7 @@ async function registerUser(event) {
 async function loginUser(event) {
     event.preventDefault();
 
-    const username = document.getElementById('username').value;
+    const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
     const response = await fetch('/auth/login', {
@@ -53,7 +53,7 @@ async function loginUser(event) {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`
+        body: `email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`
     });
 
     if (response.redirected) {
