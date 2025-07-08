@@ -6,6 +6,7 @@ from flask import (
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from application.db import get_db
+import sqlite3
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
@@ -23,14 +24,13 @@ def register():
         elif not password:
             error = 'Password is required.'
 
-        if error is None:
             try:
                 db.execute(
                     "INSERT INTO user (email, password) VALUES (?, ?)",
                     (email, generate_password_hash(password)),
                 )
                 db.commit()
-            except db.IntegrityError:
+            except sqlite3.IntegrityError:
                 error = f"User {email} is already registered."
             else:
                 return redirect(url_for("auth.login"))
