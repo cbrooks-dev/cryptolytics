@@ -14,7 +14,7 @@ function login() {
 }
 
 function register() {
-    fetch("auth/register")
+    fetch("/auth/register")
         .then(response => response.json())
         .then(data => {
             alert(data.message)
