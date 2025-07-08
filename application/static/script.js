@@ -3,25 +3,11 @@
  */
 
 function login() {
-    fetch("/auth/login")
-        .then(response => response.text())
-        .then(html => {
-            document.body.innerHTML = html;
-        })
-        .catch(error => {
-            console.error("Error: ", error)
-        });
+    window.location.href = "/auth/login"
 }
 
 function register() {
-    fetch("/auth/register")
-        .then(response => response.text())
-        .then(html => {
-            document.body.innerHTML = html;
-        })
-        .catch(error => {
-            console.log("Error: ", error)
-        });
+    window.location.href = "/auth/register"
 }
 
 function search() {
