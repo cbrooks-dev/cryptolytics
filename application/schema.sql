@@ -12,5 +12,5 @@ CREATE TABLE IF NOT EXISTS crypto (
   user_id INTEGER NOT NULL,
   crypto_name TEXT NOT NULL,
   crypto_symbol TEXT NOT NULL,
-  FOREIGN KEY (user_id) REFERENCES users (id)
+  FOREIGN KEY (user_id) REFERENCES user (id)
 );
