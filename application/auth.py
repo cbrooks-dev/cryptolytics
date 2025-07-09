@@ -23,7 +23,7 @@ def register():
             error = 'email is required.'
         elif not password:
             error = 'Password is required.'
-
+        else:
             try:
                 db.execute(
                     "INSERT INTO user (email, password) VALUES (?, ?)",
@@ -35,7 +35,8 @@ def register():
             else:
                 return redirect(url_for("auth.login"))
 
-        flash(error)
+        if error is not None:
+            flash(error)
 
     return render_template('auth/register.html')
 
